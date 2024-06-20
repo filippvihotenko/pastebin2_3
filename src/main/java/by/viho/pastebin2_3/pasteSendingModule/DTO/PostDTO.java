@@ -11,6 +11,8 @@ public class PostDTO
 
     private String paste_expiration;
 
+    private String cathegory;
+
     public String getPaste_exposure()
     {
         return paste_exposure;
@@ -35,12 +37,14 @@ public class PostDTO
     {
     }
 
-    public PostDTO(UUID post_id,  String message, String title)
+    public String getCathegory()
     {
-        this.post_id = post_id;
+        return cathegory;
+    }
 
-        this.message = message;
-        this.title = title;
+    public void setCathegory(String cathegory)
+    {
+        this.cathegory = cathegory;
     }
 
     public UUID getPost_id()

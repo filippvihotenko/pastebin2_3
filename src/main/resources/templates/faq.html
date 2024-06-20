@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pastebin | Main</title>
-    <link rel="stylesheet" href="../static/css/core.css">
+    <link rel="stylesheet" th:href="@{/css/core.css}">
 </head>
 
 <body>
     <header>
         <ul class="nav-wrapper">
-            <li class="nav__item"><a href="index.html" class="nav__item-link">
+            <li class="nav__item"><a th:href="@{/index}" class="nav__item-link">
                     <div class="logo">PASTEBIN 2.0</div>
                 </a></li>
-            <li class="nav__item"><a href="posts.html" class="nav__item-link nav-posts">Pastes</a></li>
-            <li class="nav__item"><a href="faq.html" class="nav__item-link nav-faq active">FAQ</a></li>
-            <li class="nav__item"><a href="index.html" class="nav__item-link nav-create">
+            <li class="nav__item"><a th:href="@{/posts}" class="nav__item-link nav-posts">Pastes</a></li>
+            <li class="nav__item"><a th:href="@{/faq}" class="nav__item-link nav-faq active">FAQ</a></li>
+            <li class="nav__item"><a th:href="@{/index}" class="nav__item-link nav-create">
                     <button class="button">Create Post</button>
                 </a></li>
-            <li class="nav__item"><a href="login.html" class="nav__item-link nav-login right">
+            <li class="nav__item"><a th:href="@{/login}" class="nav__item-link nav-login right">
                     <button class="button">Login</button>
                 </a></li>
             <li class="nav__item"><a href="#" class="nav__item-link nav-search right">
