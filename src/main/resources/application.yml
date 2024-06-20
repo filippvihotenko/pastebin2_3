@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: pastebin2_3
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pastebin
+    username: zefir
+    password: zefir1234
+    driver-class-name: org.postgresql.Driver
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/pastebin
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+  flyway:
+    user: zefir
+    password: zefir1234
+    url: jdbc:postgresql://localhost:5433/pastebin
+    locations: classpath:db/migration
+    enabled: true
+    schemas: pastebin
+    validate-on-migrate: true

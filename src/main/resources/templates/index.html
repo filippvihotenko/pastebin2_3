@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastebin | Main</title>
+    <link rel="stylesheet" th:href="@{/css/core.css}">
+</head>
+
+<body>
+<header>
+    <ul class="nav-wrapper">
+        <li class="nav__item"><a th:href="@{/index}" class="nav__item-link">
+            <div class="logo">PASTEBIN 2.0</div>
+        </a></li>
+        <li class="nav__item"><a th:href="@{/posts}" class="nav__item-link nav-posts">Pastes</a></li>
+        <li class="nav__item"><a th:href="@{/faq}" class="nav__item-link nav-faq">FAQ</a></li>
+        <li class="nav__item"><a th:href="@{/index}" class="nav__item-link nav-create">
+            <button class="button" th:href="@{/index}">Create Post</button>
+        </a></li>
+        <li class="nav__item"><a th:href="@{/login}" class="nav__item-link nav-login right">
+            <button class="button">Login</button>
+        </a></li>
+        <li class="nav__item"><a href="#" class="nav__item-link nav-search right">
+            <input type="text" placeholder="Поиск">
+        </a></li>
+    </ul>
+</header>
+<main>
+    <div >
+        <form th:method="post" th:href="@{/index}" th:object="${post}" >
+            <label for="largeTextArea" class="label-indent">New paste:</label>
+            <textarea id="largeTextArea" name="largeTextArea" th:field="*{message}" rows="20" cols="80" maxlength="2500"></textarea>
+
+            <div class="settings">
+                <div>
+                    <label for="expiration">Paste expiration</label>
+                    <select id="expiration" name="expiration" th:field="*{paste_expiration}">
+                        <option value="10 minutes">10 minutes</option>
+                        <option value="1 hour">1 hour</option>
+                        <option value="1 day">1 day</option>
+                        <option value="1 week">1 week</option>
+                        <option value="1 month">1 month</option>
+                        <option value="never">Never</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="exposure">Paste exposure</label>
+                    <select id="exposure" th:field="*{paste_exposure}" name="exposure">
+                        <option value="public">public</option>
+                        <option value="unlisted">unlisted</option>
+                        <option value="private">private</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" th:field="*{title}" name="title" placeholder="Enter title">
+                </div>
+                <br>
+                <div class="button-container">
+                    <button type="submit">Paste</button>
+                    <br>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="popular-pastes">
+        <p>Popular pastes</p>
+        <div class="paste-block">
+            <a href="#" class="popular-paste-link">Lorem ipsum dolor sit.</a>
+            <div class="paste-data">
+                <span class="paste-data-author">Author</span>
+                <span class="paste-data-age">3 hours ago</span>
+                <span class="paste-data-size">0.32 KB</span>
+            </div>
+        </div>
+        <div class="paste-block">
+            <a href="#" class="popular-paste-link">Lorem ipsum dolor sit.</a>
+            <div class="paste-data">
+                <span class="paste-data-author">Author</span>
+                <span class="paste-data-age">3 hours ago</span>
+                <span class="paste-data-size">0.32 KB</span>
+            </div>
+        </div>
+        <div class="paste-block">
+            <a href="#" class="popular-paste-link">Lorem ipsum dolor sit.</a>
+            <div class="paste-data">
+                <span class="paste-data-author">Author</span>
+                <span class="paste-data-age">3 hours ago</span>
+                <span class="paste-data-size">0.32 KB</span>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>
