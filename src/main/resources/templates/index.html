@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -19,11 +19,16 @@
         <li class="nav__item"><a th:href="@{/index}" class="nav__item-link nav-create">
             <button class="button" th:href="@{/index}">Create Post</button>
         </a></li>
-        <li class="nav__item"><a th:href="@{/login}" class="nav__item-link nav-login right">
+        <li class="nav__item" sec:authorize="isAnonymous()"><a th:href="@{/login}" class="nav__item-link nav-login right">
             <button class="button">Login</button>
         </a></li>
+        <li class="nav__item" sec:authorize="isAuthenticated()"><a class="nav__item-link nav-login right">
+            <form action="/perform_logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </a></li>
         <li class="nav__item"><a href="#" class="nav__item-link nav-search right">
-            <input type="text" placeholder="Поиск">
+            <input type="text" placeholder="Search">
         </a></li>
     </ul>
 </header>

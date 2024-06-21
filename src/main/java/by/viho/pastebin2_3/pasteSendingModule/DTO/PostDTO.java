@@ -33,9 +33,6 @@ public class PostDTO
         this.paste_expiration = paste_expiration;
     }
 
-    public PostDTO()
-    {
-    }
 
     public String getCathegory()
     {
@@ -58,7 +55,6 @@ public class PostDTO
     }
 
 
-
     public String getMessage()
     {
         return message;
@@ -78,4 +74,8 @@ public class PostDTO
     {
         this.title = title;
     }
+    public PostDTO()
+    {
+    }
+
 }

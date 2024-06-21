@@ -1,12 +1,14 @@
-package by.viho.pastebin2_3.businessLogicModule.security.securityconfig;/*
-package by.viho.pastebin2.businessLogicModule.security.securityconfig;
+package by.viho.pastebin2_3.businessLogicModule.security.securityconfig;
 
-import by.viho.pastebin2.dataAccessModule.repository.PersonRepo;
+
+
+import by.viho.pastebin2_3.dataAccessModule.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,11 +25,16 @@ public class SecurityConfig
 
     private final PersonRepo personRepo;
 
+
+
     @Autowired
     public SecurityConfig(PersonRepo personRepo)
     {
         this.personRepo = personRepo;
     }
+
+
+
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -49,9 +56,15 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
         http.csrf().disable();
-        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/test/index")
-                        .permitAll().anyRequest().authenticated()).build();
+        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/index").permitAll().requestMatchers("/css/**").permitAll()
+                .anyRequest().authenticated()).formLogin(form -> form
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/index", true)  // Страница перенаправления после успешного входа
+                .failureUrl("/login?error=true")  // Страница перенаправления после неудачного входа
+                .permitAll()).logout(logout -> logout.logoutUrl("/perform_logout")).build();
     }
-
 }
-*/
+

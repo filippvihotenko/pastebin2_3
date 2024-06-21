@@ -1,10 +1,10 @@
-package by.viho.pastebin2_3.businessLogicModule.service;/*
-package by.viho.pastebin2.dataAccessModule.service;
+package by.viho.pastebin2_3.businessLogicModule.service;
 
-import by.viho.pastebin2.dataAccessModule.repository.PersonRepo;
-import by.viho.pastebin2.pasteSendingModule.domain.Person;
+import by.viho.pastebin2_3.dataAccessModule.repository.PersonRepo;
+import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +22,13 @@ public class UserRegistrationService
         this.personRepo = personRepo;
         this.passwordEncoder = passwordEncoder;
     }
-    @Transactional
+
     public void register(Person person) {
-        person.setPassword(passwordEncoder.encode(person.getPassword()));
+        String password =  passwordEncoder.encode(person.getPassword());
+        person.setPassword(password);
         person.setRole("ROLE_USER");
+
         personRepo.save(person);
     }
 }
-*/
+

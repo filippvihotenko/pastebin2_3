@@ -33,6 +33,7 @@ public class Post
     private ZonedDateTime created_at;
 
     @Column(name = "cathegory")
+    @NotNull
     private String cathegory;
 
     @Column(name = "message")

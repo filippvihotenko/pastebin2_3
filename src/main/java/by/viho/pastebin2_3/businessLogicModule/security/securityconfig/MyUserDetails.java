@@ -1,7 +1,6 @@
-package by.viho.pastebin2_3.businessLogicModule.security.securityconfig;/*
-package by.viho.pastebin2.businessLogicModule.security.securityconfig;
+package by.viho.pastebin2_3.businessLogicModule.security.securityconfig;
 
-import by.viho.pastebin2.pasteSendingModule.domain.Person;
+import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -62,4 +61,4 @@ public class MyUserDetails implements UserDetails
         return true;
     }
 }
-*/
+

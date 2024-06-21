@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form class="login-form">
+        <form class="login-form" th:method="post" th:action="@{/perform_login}">
             <p>Вход в аккаунт</p>
             <div>
                 <label for="username">Логин</label>
@@ -21,7 +21,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit">
-                <a th:href="@{/index}">Login</a>
+                <a>Login</a>
             </button>
         </form>
     </main>

@@ -1,8 +1,7 @@
-package by.viho.pastebin2_3.dataAccessModule.configuration;/*
-package by.viho.pastebin2.dataAccessModule.configuration;
+package by.viho.pastebin2_3.dataAccessModule.configuration;
 
 
-import org.springframework.beans.factory.annotation.Value;
+
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -17,7 +16,5 @@ public class ResourceConfig implements WebMvcConfigurer
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 
     }
-
-
 }
-*/
+
