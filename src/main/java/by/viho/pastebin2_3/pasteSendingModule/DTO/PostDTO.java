@@ -1,16 +1,22 @@
 package by.viho.pastebin2_3.pasteSendingModule.DTO;
 
-import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class PostDTO
 {
-    private UUID post_id;
+    @NotBlank
+    @Size(min = 1, max = 1000)
     private String message;
+    @NotBlank
+    @Size(min = 1, max = 30)
     private String title;
+    @NotNull
     private String paste_exposure;
-
+    @NotNull
     private String paste_expiration;
-
+    @NotNull
     private String cathegory;
 
     public String getPaste_exposure()
@@ -42,16 +48,6 @@ public class PostDTO
     public void setCathegory(String cathegory)
     {
         this.cathegory = cathegory;
-    }
-
-    public UUID getPost_id()
-    {
-        return post_id;
-    }
-
-    public void setPost_id(UUID post_id)
-    {
-        this.post_id = post_id;
     }
 
 

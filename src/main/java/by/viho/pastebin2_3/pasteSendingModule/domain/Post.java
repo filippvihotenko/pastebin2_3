@@ -1,11 +1,9 @@
 package by.viho.pastebin2_3.pasteSendingModule.domain;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +24,6 @@ public class Post
     @Column(name = "post_Id")
     private UUID post_id;
 
-    @Column(name = "sender_Id")
-    private UUID sender_id;
-
     @Column(name = "timestamp")
     private ZonedDateTime created_at;
 
@@ -38,10 +33,12 @@ public class Post
 
     @Column(name = "message")
     @NotNull
+    @Size(min = 1, max = 1000)
     private String message;
 
     @Column(name = "title")
     @NotNull
+    @Size(min = 1, max = 30)
     private String title;
 
     @Column(name = "paste_exposure")
@@ -52,4 +49,8 @@ public class Post
     @Column(name = "paste_expiration")
     @NotNull
     private String paste_expiration;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id")
+    private Person person;
 }

@@ -62,8 +62,8 @@ public class SecurityConfig
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/index", true)  // Страница перенаправления после успешного входа
-                .failureUrl("/login?error=true")  // Страница перенаправления после неудачного входа
+                .defaultSuccessUrl("/index", true)
+                .failureUrl("/login?error=true")
                 .permitAll()).logout(logout -> logout.logoutUrl("/perform_logout")).build();
     }
 }

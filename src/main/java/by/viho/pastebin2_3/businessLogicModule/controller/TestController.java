@@ -1,3 +1,4 @@
+/*
 package by.viho.pastebin2_3.businessLogicModule.controller;
 
 import org.springframework.stereotype.Controller;
@@ -14,3 +15,4 @@ public class TestController
     }
 
 }
+*/

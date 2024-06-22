@@ -1,13 +1,15 @@
 package by.viho.pastebin2_3.businessLogicModule.security.securityconfig;
 
 import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+
 
 public class MyUserDetails implements UserDetails
 {

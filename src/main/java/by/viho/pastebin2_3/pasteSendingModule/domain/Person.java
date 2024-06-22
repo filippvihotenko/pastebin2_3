@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +26,9 @@ public class Person
     private String password;
     @Column(name = "role")
     private String role;
+
+    @OneToMany(mappedBy = "person",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Post> posts;
 
     public Person()
     {
