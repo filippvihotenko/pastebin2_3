@@ -34,7 +34,7 @@
 </header>
 <main>
     <div >
-        <form th:method="post" th:href="@{/index}" th:object="${post}" >
+        <form th:method="post" th:action="@{/posts}" th:object="${post}" >
             <label for="largeTextArea" class="label-indent">New paste:</label>
             <textarea id="largeTextArea" name="largeTextArea" th:field="*{message}" rows="20" cols="80" maxlength="2500"></textarea>
 

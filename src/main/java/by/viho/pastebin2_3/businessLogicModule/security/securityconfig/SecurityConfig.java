@@ -6,6 +6,8 @@ import by.viho.pastebin2_3.dataAccessModule.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -35,7 +37,6 @@ public class SecurityConfig
 
 
 
-
     @Bean
     public UserDetailsService userDetailsService(){
         return new MyUserDetailService(personRepo);
@@ -55,8 +56,9 @@ public class SecurityConfig
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
+
         http.csrf().disable();
-        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/index").permitAll().requestMatchers("/css/**").permitAll()
+        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/index", "/add", "/registration").permitAll().requestMatchers("/css/**").permitAll()
                 .anyRequest().authenticated()).formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("username")

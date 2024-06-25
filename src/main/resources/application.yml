@@ -22,3 +22,6 @@ spring:
     enabled: true
     schemas: pastebin
     validate-on-migrate: true
+
+  cassandra:
+    port: 8080

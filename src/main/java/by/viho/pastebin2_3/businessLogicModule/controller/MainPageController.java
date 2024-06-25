@@ -3,6 +3,7 @@ package by.viho.pastebin2_3.businessLogicModule.controller;
 import by.viho.pastebin2_3.businessLogicModule.mappingObjectsService.PostsServiceMappingFacade;
 import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/index")
 @AllArgsConstructor
-public class AuthorizedMainPageController
+public class MainPageController
 {
     private PostsServiceMappingFacade postsServiceMappingFacade;
 
@@ -23,9 +24,4 @@ public class AuthorizedMainPageController
         return "index";
     }
 
-    @PostMapping()
-    public String createPost(@ModelAttribute("post") PostDTO postDTO){
-        postsServiceMappingFacade.createPost(postDTO);
-        return "redirect:/index";
-    }
 }

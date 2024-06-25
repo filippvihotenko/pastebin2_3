@@ -1,5 +1,6 @@
 package by.viho.pastebin2_3.pasteSendingModule.domain;
 
+import by.viho.pastebin2_3.pasteSendingModule.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -24,8 +25,10 @@ public class Person
     private String username;
     @Column(name = "password")
     private String password;
+
     @Column(name = "role")
     private String role;
+
 
     @OneToMany(mappedBy = "person",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Post> posts;

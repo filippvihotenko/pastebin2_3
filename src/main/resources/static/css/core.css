@@ -223,6 +223,20 @@ select:focus {
     margin-top: 20px;
 }
 
+/*.link-to-registration{
+
+    gap: 10px;
+    color: aliceblue;
+    border-radius: 6px;
+    padding: 40px 20px;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 115px;
+}*/
+
 
 .active {
     color: #6e6e6e;

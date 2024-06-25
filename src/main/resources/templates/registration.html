@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastebin | Main</title>
+    <link rel="stylesheet" th:href="@{/css/core.css}">
+</head>
+
+<body>
+<main>
+    <form class="login-form" th:method="post" th:action="@{/registration}" th:object="${person}">
+        <p>Create a new account</p>
+        <div>
+            <label for="username">Логин</label>
+            <input  type="text" id="username" name="username" th:field="*{username}" required>
+        </div>
+        <div>
+            <label for="password">Пароль</label>
+            <input  type="password" id="password" name="password" th:field="*{password}" required>
+        </div>
+        <button type="submit">
+            <a>Sign up</a>
+        </button>
+    </form>
+</main>
+</body>
+
+</html>

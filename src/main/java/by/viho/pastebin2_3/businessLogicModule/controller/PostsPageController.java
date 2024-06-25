@@ -1,3 +1,4 @@
+/*
 package by.viho.pastebin2_3.businessLogicModule.controller;
 
 import by.viho.pastebin2_3.businessLogicModule.mappingObjectsService.PostsServiceMappingFacade;
@@ -60,3 +61,4 @@ public class PostsPageController
         return "TestTemplate";
     }
 }
+*/
