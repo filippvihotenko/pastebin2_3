@@ -58,7 +58,7 @@ public class SecurityConfig
     {
 
         http.csrf().disable();
-        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/index", "/add", "/registration").permitAll().requestMatchers("/css/**").permitAll()
+        return http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers("/index", "/add", "/registration", "/posts", "/faq", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css").permitAll().requestMatchers("/css/**").permitAll()
                 .anyRequest().authenticated()).formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("username")

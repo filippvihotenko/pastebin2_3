@@ -51,6 +51,6 @@ public class Post
     private String paste_expiration;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "sender_id", referencedColumnName = "username")
     private Person person;
 }

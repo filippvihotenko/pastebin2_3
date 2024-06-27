@@ -223,20 +223,56 @@ select:focus {
     margin-top: 20px;
 }
 
-/*.link-to-registration{
+.navbar {
+    padding: 0 10px;
+}
 
-    gap: 10px;
-    color: aliceblue;
-    border-radius: 6px;
-    padding: 40px 20px;
-    justify-content: center;
+*.icon-dark {
+    color: grey;
+}
+
+.message {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 115px;
-}*/
+    top: 40px;
+    right:5px;
+}
 
+.search {
+    position: relative;
+}
+
+.search input {
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 1px solid grey;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+
+.search button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 80px;
+    background: grey;
+}
+
+.size-select {
+    width: 60px;
+    color: #495057;
+    vertical-align: middle;
+    padding: 6px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
 
 .active {
     color: #6e6e6e;

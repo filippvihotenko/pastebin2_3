@@ -2,10 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pastebin | Main</title>
-    <link rel="stylesheet" th:href="@{/css/core.css}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>BezKoder - Spring Boot Thymeleaf Pagination example</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/core.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
@@ -22,49 +29,117 @@
             <li class="nav__item"><a th:href="@{/login}" class="nav__item-link nav-login right">
                     <button class="button">Login</button>
                 </a></li>
-            <li class="nav__item"><a href="#" class="nav__item-link nav-search right">
-                    <input type="text" placeholder="Search">
-                </a></li>
+
         </ul>
     </header>
     <main>
-        <div class="latest-pastes">
+        <form th:action="@{/posts}" id="searchForm">
+                    <div >
+                        <input type="search" name="keyword" th:value="${keyword}"
+                               placeholder="Enter keyword">
+                        <button type="submit">Search</button>
+                    </div>
+        </form>
+
+
+        <div class="latest-pastes" th:if="${posts.size() > 0}">
             <p>Latest pastes</p>
-            <div class="paste-block">
-                <a href="#" class="paste-link">Lorem ipsum dolor sit.</a>
-                <div class="paste-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptas obcaecati, repellat nisi ratione earum incidunt. Sapiente iusto quia nesciunt?
+            <div class="paste-block" th:each="post : ${posts}">
+                <a href="#" class="paste-link">[[${post.title}]]</a>
+                <div class="paste-body" >
+                    [[${post.message}]]
                 </div>
                 <div class="paste-data">
-                    <span class="paste-data-author">Author</span>
+                    <span class="paste-data-author" th:text="${post.getPerson().getUsername()}">Author</span>
                     <span class="paste-data-age">3 hours ago</span>
                     <span class="paste-data-size">0.32 KB</span>
                 </div>
             </div>
-            <div class="paste-block">
-                <a href="#" class="paste-link">Lorem ipsum dolor sit.</a>
-                <div class="paste-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptas obcaecati, repellat nisi ratione earum incidunt. Sapiente iusto quia nesciunt?
-                </div>
-                <div class="paste-data">
-                    <span class="paste-data-author">Author</span>
-                    <span class="paste-data-age">3 hours ago</span>
-                    <span class="paste-data-size">0.32 KB</span>
-                </div>
+
+            <div th:unless="${posts.size() > 0}">
+                <span>No tutorials found!</span>
             </div>
-            <div class="paste-block">
-                <a href="#" class="paste-link">Lorem ipsum dolor sit.</a>
-                <div class="paste-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptas obcaecati, repellat nisi ratione earum incidunt. Sapiente iusto quia nesciunt?
+        </div>
+
+    </main>
+    <nav aria-label="Pagination" th:if="${totalPages > 0}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a th:replace="fragments/paging :: paging(1, '<<', 'First Page')"></a>
+            </li>
+            <li class="page-item font-weight-bold" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a th:fragment="paging(pageNum, label, tooltip)" class="page-link"
+                   th:href="@{'/posts?' + ${keyword!=null && keyword!=''? 'keyword=' + keyword + '&' : ''} + 'page=' + ${pageNum} + '&size=' + ${pageSize}}"
+                   th:title="${tooltip}" rel="tooltip">
+                    [[${label}]]
+                </a>
+            </li>
+            <li class="page-item disabled" th:if="${currentPage - 2 > 1}">
+                <a class="page-link" href="#">...</a>
+            </li>
+            <li class="page-item" th:classappend="${page == currentPage} ? 'active'"
+                th:each="page : ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 1, currentPage + 2 < totalPages ? currentPage + 2 : totalPages)}">
+                <a th:replace="fragments/paging :: paging(${page}, ${page}, 'Page ' + ${page})"></a>
+            </li>
+            <li class="page-item disabled" th:if="${currentPage + 2 < totalPages}">
+                <a class="page-link" href="#">...</a>
+            </li>
+            <li class="page-item font-weight-bold" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                <a th:replace="fragments/paging :: paging(${currentPage + 1},'Next', 'Next Page')"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                <a th:replace="fragments/paging :: paging(${totalPages}, '>>', 'Last Page')"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="modal fade text-center" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="paste-data">
-                    <span class="paste-data-author">Author</span>
-                    <span class="paste-data-age">3 hours ago</span>
-                    <span class="paste-data-size">0.32 KB</span>
+
+                <div class="modal-body">
+                    <span id="confirmText"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-delete").on("click", function (e) {
+                e.preventDefault();
+                link = $(this);
+
+                tutorialTitle = link.attr("tutorialTitle");
+                $("#yesBtn").attr("href", link.attr("href"));
+                $("#confirmText").html("Do you want to delete the Tutorial \<strong\>" + tutorialTitle + "\<\/strong\>?");
+                $("#confirmModal").modal();
+            });
+
+            $("#btnClear").on("click", function (e) {
+                e.preventDefault();
+                $("#keyword").text("");
+                window.location = "[[@{/posts}]]";
+            });
+        });
+
+        function changePageSize() {
+            $("#searchForm").submit();
+        }
+    </script>
+
 </body>
 
 </html>

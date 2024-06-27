@@ -1,9 +1,6 @@
 /*
 
 package by.viho.pastebin2_3.businessLogicModule.controller;
-
-
-
 import by.viho.pastebin2_3.businessLogicModule.facade.PostServiceFacade;
 import by.viho.pastebin2_3.businessLogicModule.service.PostService;
 import by.viho.pastebin2_3.dataAccessModule.domain.Post;
@@ -29,7 +26,4 @@ public class PostController
 
 
 }
-
-
-
 */

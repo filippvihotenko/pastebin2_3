@@ -33,6 +33,7 @@
     </ul>
 </header>
 <main>
+
     <div >
         <form th:method="post" th:action="@{/posts}" th:object="${post}" >
             <label for="largeTextArea" class="label-indent">New paste:</label>
@@ -68,15 +69,24 @@
                 <div>
                     <label for="title">Title</label>
                     <input type="text" id="title" th:field="*{title}" name="title" placeholder="Enter title">
+
                 </div>
                 <br>
                 <div class="button-container">
                     <button type="submit">Paste</button>
                     <br>
+                    <div data-th-if="${errors}">
+                        <h2>Errors:</h2>
+                        <ul>
+                            <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
         </form>
+
+
 
     </div>
     <div class="popular-pastes">
@@ -106,6 +116,7 @@
             </div>
         </div>
     </div>
+
 </main>
 </body>
 
