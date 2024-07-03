@@ -31,7 +31,7 @@ public class UserRegistrationService
 
 
     public Person signUpUser(PersonDTO personDTO){
-        Optional<Role> role = roleRepo.findByName(RoleEnum.VERIFIED_USER);
+        Optional<Role> role = roleRepo.findByName(RoleEnum.ADMIN);
 
         if (role.isEmpty()){
             return null;

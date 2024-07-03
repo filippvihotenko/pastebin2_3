@@ -24,7 +24,6 @@ public class PostsController
     private final RoleSeeder roleSeeder;
     private PostsServiceMappingFacade postsServiceMappingFacade;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping
     public String createPost(@Valid  PostDTO postDTO, BindingResult bindingResult, Model model) throws BindException {
         if (bindingResult.hasErrors()) {

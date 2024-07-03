@@ -41,10 +41,12 @@ public class PostServiceImpl implements PostService
     }
 
 
+
+
     @Override
     public Post createPost(Post post)
     {
-        var userDetails = (UserDetails) this.strategy.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) this.strategy.getContext().getAuthentication().getPrincipal();
 
         post.setPost_id(UUID.randomUUID());
         post.setPerson(personRepo.findByUsername(userDetails.getUsername()).orElse(null));
@@ -57,9 +59,6 @@ public class PostServiceImpl implements PostService
         postRepo.deleteById(id);
     }
 
-
-
-
     @Override
     public Page<Post> findByTitleContainingIgnoreCase(String keywords, Pageable pageable){
         return postRepo.findByTitleContainingIgnoreCase(keywords,pageable);
@@ -68,6 +67,8 @@ public class PostServiceImpl implements PostService
     public Page<Post> findAll(Pageable pageable){
         return postRepo.findAll(pageable);
     }
+
+
 
 }
 

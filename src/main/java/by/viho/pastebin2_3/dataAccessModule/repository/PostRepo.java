@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,4 +20,14 @@ public interface PostRepo extends JpaRepository<Post,UUID>
     List<Post> findAll(Sort sort);
 
     Page<Post> findAll(Pageable pageable);
+
+
+    @Query(value = "SELECT * FROM Post p WHERE p.sender_id = :sender_Id",
+            nativeQuery = true)
+    Page<Post> findPostBySenderIdNative(String sender_Id, Pageable pageable);
+
+    @Query(value = "SELECT * FROM Post p WHERE p.sender_id = :sender_Id AND p.content ILIKE %:keyword%",
+            nativeQuery = true)
+    Page<Post> findPostBySenderIdNativeWithKeyword(String sender_Id, Pageable pageable, String keyword);
+
 }

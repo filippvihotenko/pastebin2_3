@@ -1,0 +1,5 @@
+<a th:fragment="my_paging(pageNum, label, tooltip)" class="page-link"
+   th:href="@{'/mypastes?' + ${keyword!=null && keyword!=''? 'keyword=' + keyword + '&' : ''} + 'page=' + ${pageNum} + '&size=' + ${pageSize}}"
+   th:title="${tooltip}" rel="tooltip">
+    [[${label}]]
+</a>
