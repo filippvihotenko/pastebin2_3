@@ -1,4 +1,4 @@
-package by.viho.pastebin2_3.businessLogicModule.mappingObjectsService;
+/* package by.viho.pastebin2_3.businessLogicModule.mappingObjectsService;
 
 import by.viho.pastebin2_3.businessLogicModule.service.PostService;
 import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
@@ -23,5 +23,5 @@ public class PostServiceMappingFacade
     public void deletePost(UUID uuid){
         postService.deletePost(uuid);
     }
-}
+}  */
 

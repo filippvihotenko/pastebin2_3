@@ -4,9 +4,13 @@ package by.viho.pastebin2_3.businessLogicModule.service;
 
 import by.viho.pastebin2_3.dataAccessModule.repository.PersonRepo;
 import by.viho.pastebin2_3.dataAccessModule.repository.PostRepo;
+import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
+import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
 import by.viho.pastebin2_3.pasteSendingModule.domain.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +28,8 @@ public class PostServiceImpl implements PostService
     private PersonRepo personRepo;
     SecurityContextHolderStrategy strategy =  SecurityContextHolder.getContextHolderStrategy();
 
+    @Autowired
+    private LocalContainerEntityManagerFactoryBean containerEntityManagerFactoryBean;
 
     public PostServiceImpl(PostRepo postRepo, PersonRepo personRepo)
     {
@@ -60,16 +66,18 @@ public class PostServiceImpl implements PostService
     }
 
     @Override
-    public Page<Post> findByTitleContainingIgnoreCase(String keywords, Pageable pageable){
-        return postRepo.findByTitleContainingIgnoreCase(keywords,pageable);
+    public Page<PostDTO> findByTitleContainingIgnoreCase(String keywords, Pageable pageable){
+        UserDetails userDetails = (UserDetails) this.strategy.getContext().getAuthentication().getPrincipal();
+
+        Person person =  personRepo.findByUsername(userDetails.getUsername()).orElse(null);
+        return postRepo.findByTitleContainingIgnoreCase(keywords,pageable,person);
     }
     @Override
-    public Page<Post> findAll(Pageable pageable){
-        return postRepo.findAll(pageable);
+    public Page<PostDTO> findAll(Pageable pageable){
+        UserDetails userDetails = (UserDetails) this.strategy.getContext().getAuthentication().getPrincipal();
+        Person person =  personRepo.findByUsername(userDetails.getUsername()).orElse(null);
+        return postRepo.findAll(pageable,person);
     }
-
-
-
 }
 
 

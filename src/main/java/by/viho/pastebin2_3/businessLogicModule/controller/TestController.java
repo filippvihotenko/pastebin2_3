@@ -1,7 +1,6 @@
 package by.viho.pastebin2_3.businessLogicModule.controller;
 
 import by.viho.pastebin2_3.businessLogicModule.mappingObjectsService.AnauthorizedPostServiceFacade;
-import by.viho.pastebin2_3.businessLogicModule.mappingObjectsService.PostsServiceMappingFacade;
 import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
 import by.viho.pastebin2_3.pasteSendingModule.bootstrap.RoleSeeder;
 import lombok.AllArgsConstructor;

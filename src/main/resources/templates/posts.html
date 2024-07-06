@@ -49,10 +49,18 @@
                 <div class="paste-body" >
                     [[${post.message}]]
                 </div>
-                <div class="paste-data">
+                <div class="paste-data" >
                     <span class="paste-data-author" th:text="${post.getPerson().getUsername()}">Author</span>
-                    <span class="paste-data-age">3 hours ago</span>
+                    <span class="paste-data-age" th:if="${po}">3 hours ago</span>
                     <span class="paste-data-size">0.32 KB</span>
+                    <form method="post"  data-th-action="@{/customer/products/{productId}/add-to-favourites(productId=${product.id})}"
+                          >
+                        <button type="submit">Добавить в избранное</button>
+                    </form>
+                    <form method="post" data-th-action="@{/customer/products/{productId}/remove-from-favourites(productId=${product.id})}"
+                          data-th-if="${inFavourite}">
+                        <button type="submit">Удалить из избранного</button>
+                    </form>
                 </div>
             </div>
 

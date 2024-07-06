@@ -1,6 +1,7 @@
 package by.viho.pastebin2_3.pasteSendingModule.domain;
 
 
+import by.viho.pastebin2_3.dataAccessModule.util.PostsHelper;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -53,4 +56,16 @@ public class Post
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", referencedColumnName = "username")
     private Person person;
+
+    public String getPersonUsername() {
+        return PostsHelper.getPersonUsername(person);
+    }
+
+
+    @ManyToMany
+    @JoinTable(name = "person_likes",
+    joinColumns = {@JoinColumn(name = "post_id")},
+    inverseJoinColumns = {@JoinColumn(name = "person_id")})
+    private Set<Person> personSet = new HashSet<>();
+
 }

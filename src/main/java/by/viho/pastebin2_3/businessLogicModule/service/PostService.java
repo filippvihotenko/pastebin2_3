@@ -3,6 +3,8 @@ package by.viho.pastebin2_3.businessLogicModule.service;
 
 
 
+import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
+import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
 import by.viho.pastebin2_3.pasteSendingModule.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,11 +27,8 @@ public interface PostService
     @Transactional
     void deletePost(UUID id);
 
-    Page<Post> findByTitleContainingIgnoreCase(String keywords, Pageable pageable);
+    Page<PostDTO> findByTitleContainingIgnoreCase(String keywords, Pageable pageable);
 
-    Page<Post> findAll(Pageable pageable);
-
-
-
+    Page<PostDTO> findAll(Pageable pageable);
 
 }

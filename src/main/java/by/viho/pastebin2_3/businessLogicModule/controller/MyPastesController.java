@@ -1,20 +1,16 @@
 package by.viho.pastebin2_3.businessLogicModule.controller;
 
 import by.viho.pastebin2_3.businessLogicModule.service.MyPastesService;
-import by.viho.pastebin2_3.businessLogicModule.service.PostService;
-import by.viho.pastebin2_3.pasteSendingModule.domain.Post;
-import lombok.AllArgsConstructor;
+import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/mypastes")
@@ -29,10 +25,10 @@ public class MyPastesController {
     public String getMyPastes(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(required = false) String keyword){
         int size = 5;
         try{
-            List<Post> posts;
+            List<PostDTO> posts;
             //using for parametrizing pagination
             Pageable paging = PageRequest.of(page - 1, size);
-            Page<Post> pageTuts;
+            Page<PostDTO> pageTuts;
 
             if (keyword == null) {
                 pageTuts = myPastesService.findPostsBySenderIdIgnoreCase(paging);
@@ -53,6 +49,14 @@ public class MyPastesController {
         return "my_pastes";
     }
 
-
-
+    @PostMapping("/{post_id}/dis")
+    public String dislikePost(@PathVariable("post_id") UUID post_Id){
+        myPastesService.dislikePost(post_Id);
+        return "redirect:/mypastes";
+    }
+    @PostMapping("/{post_id}")
+    public String likePost(@PathVariable("post_id") UUID post_Id){
+        myPastesService.likePost(post_Id);
+        return "redirect:/mypastes";
+    }
 }

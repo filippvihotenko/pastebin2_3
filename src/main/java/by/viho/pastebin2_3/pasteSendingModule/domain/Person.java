@@ -33,6 +33,9 @@ public class Person
     @OneToMany(mappedBy = "person",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Post> posts;
 
+    @ManyToMany(mappedBy = "personSet")
+    Set<Post> likedPosts;
+
     public Person()
     {
         this.uuid = UUID.randomUUID();

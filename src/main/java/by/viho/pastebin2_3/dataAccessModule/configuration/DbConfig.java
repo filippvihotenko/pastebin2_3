@@ -35,8 +35,6 @@ public class DbConfig
         return dataSource;
     }
 
-
-
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();

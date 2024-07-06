@@ -1,17 +1,21 @@
 package by.viho.pastebin2_3.businessLogicModule.service;
 
-import by.viho.pastebin2_3.pasteSendingModule.domain.Post;
+import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
+import by.viho.pastebin2_3.pasteSendingModule.domain.Person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 public interface MyPastesService {
 
 
 
-    Page<Post> findPostsBySenderIdIgnoreCase( Pageable pageable);
+    Page<PostDTO> findPostsBySenderIdIgnoreCase(Pageable pageable);
 
 
-    Page<Post> findPostsBySenderIdIgnoreCaseWithKeyword( Pageable pageable, String keyword);
+    Page<PostDTO> findPostsBySenderIdIgnoreCaseWithKeyword( Pageable pageable, String keyword);
+    public void dislikePost(UUID item_id);
 
+    void likePost(UUID postId);
 }

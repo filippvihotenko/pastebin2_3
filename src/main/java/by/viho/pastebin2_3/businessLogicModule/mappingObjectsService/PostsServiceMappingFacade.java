@@ -1,4 +1,4 @@
-package by.viho.pastebin2_3.businessLogicModule.mappingObjectsService;
+/* package by.viho.pastebin2_3.businessLogicModule.mappingObjectsService;
 
 import by.viho.pastebin2_3.businessLogicModule.service.PostService;
 import by.viho.pastebin2_3.pasteSendingModule.domain.Post;
@@ -23,4 +23,4 @@ public class PostsServiceMappingFacade
         postService.createPost(ModelMapperConf.convertTo(postDTO, Post.class));
     }
 
-}
+} */

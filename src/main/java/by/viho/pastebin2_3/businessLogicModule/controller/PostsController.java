@@ -1,5 +1,4 @@
-
-package by.viho.pastebin2_3.businessLogicModule.controller;
+/* package by.viho.pastebin2_3.businessLogicModule.controller;
 
 import by.viho.pastebin2_3.businessLogicModule.mappingObjectsService.PostsServiceMappingFacade;
 import by.viho.pastebin2_3.pasteSendingModule.DTO.PostDTO;
@@ -35,5 +34,5 @@ public class PostsController
             return "redirect:/index";
         }
     }
-}
+} */
 
